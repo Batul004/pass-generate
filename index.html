@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Password Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(45deg, #3498db, #2ecc71);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #password-box {
+      border: 2px solid #2ecc71;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    h1 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    #password {
+      font-size: 18px;
+      font-weight: bold;
+      color: #f3f8f5;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 10px 25px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #2ecc71;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="password-box">
+    <h1>Random Password Generator</h1>
+    <p>Password: <span id="password"></span></p>
+    <button onclick="generatePassword()">Generate Password</button>
+  </div>
+
+  <script>
+    function generatePassword() {
+      const length = parseInt(prompt('Enter the desired password length:', '8'));
+      if (isNaN(length) || length < 1) {
+        alert('Invalid input. Please enter a positive number.');
+        return;
+      }
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|[]\\:;"<>?,./';
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
+      }
+      document.getElementById('password').innerText = password;
+    }
+  </script>
+</body>
+</html>
